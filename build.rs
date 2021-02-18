@@ -16,8 +16,8 @@ fn main() {
 
     #[cfg(feature = "dynamic")]
     {
-        println!("cargo:rustc-link-lib=dynamic=avahi-client");
-        println!("cargo:rustc-link-lib=dynamic=avahi-common");
+        println!("cargo:rustc-link-lib=dylib=avahi-client");
+        println!("cargo:rustc-link-lib=dylib=avahi-common");
     }
 
     bindgen::Builder::default()
