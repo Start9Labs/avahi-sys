@@ -8,8 +8,17 @@ fn main() {
         return;
     }
 
-    println!("cargo:rustc-link-lib=avahi-client");
-    println!("cargo:rustc-link-lib=avahi-common");
+    #[cfg(not(feature = "dynamic"))]
+    {
+        println!("cargo:rustc-link-lib=avahi-client");
+        println!("cargo:rustc-link-lib=avahi-common");
+    }
+
+    #[cfg(feature = "dynamic")]
+    {
+        println!("cargo:rustc-link-lib=dynamic=avahi-client");
+        println!("cargo:rustc-link-lib=dynamic=avahi-common");
+    }
 
     bindgen::Builder::default()
         .header("wrapper.h")
